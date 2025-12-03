@@ -18,6 +18,7 @@ Run:
 ```bash
 run.cmd
 ```
+after running, keep the terminal open and navigate to: 'http://localhost:5151/swagger'
 ## Service Design Overview
 
 This service retrieves the best **N** Hacker News stories, taking into account that Hacker News data changes dynamically and unpredictably. Both the list of IDs and individual stories can change at any time, so the service uses a short-lived **dynamic caching** strategy:
