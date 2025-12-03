@@ -19,7 +19,7 @@ namespace HackerNewsPoller.Controllers
         }
 
         [HttpGet]
-        public async Task<ActionResult<IReadOnlyList<BestStoryItem>>> GetBestStories([FromQuery] int number, CancellationToken cancellationToken)
+        public async Task<ActionResult<IReadOnlyList<BestStoryItem>>> GetBestStories([FromQuery(Name = "n")] int number, CancellationToken cancellationToken)
         {
             if (number <= 0 || number > configuration_.MaxStoriesLimit)
             {
