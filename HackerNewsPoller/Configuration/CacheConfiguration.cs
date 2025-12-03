@@ -7,5 +7,7 @@
 
         //value in seconds
         public double ItemDuration = 120;
+
+        public string DefaultCacheKey = "best_stories_ids";
     }
 }

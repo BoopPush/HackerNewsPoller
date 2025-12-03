@@ -15,6 +15,8 @@ namespace HackerNewsPoller.Configuration
 
         public int? MaxStoriesLimit { get; set; } = 200;
 
+        public int MaxRequestsLimit { get; set; } = 20;
+
         public bool AllowConcurrency { get; set; } = true;
 
         public string GetStoryUrl(int id)

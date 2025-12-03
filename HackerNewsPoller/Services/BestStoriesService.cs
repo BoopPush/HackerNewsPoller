@@ -20,7 +20,7 @@ namespace HackerNewsPoller.Services
         private readonly TimeSpan ItemDuration;
 
         //todo move to config
-        private const string DefaultCacheKey = "best_stories_ids";
+        private readonly string DefaultCacheKey;
 
         public BestStoriesService(
             IHackerNewsClient client, 
@@ -32,11 +32,11 @@ namespace HackerNewsPoller.Services
             configuration_ = configuration.Value.HackerNews ?? new HackerNewsConfiguration();
             logger_ = logger;
             cache_ = cache;
-            //todo move to config
-            semaphore_ = new SemaphoreSlim(10,10);
+            semaphore_ = new SemaphoreSlim(configuration_.MaxRequestsLimit, configuration_.MaxRequestsLimit);
 
             BestStoriesDuration = TimeSpan.FromSeconds(configuration.Value.Cache?.BestStoriesDuration ?? 60);
             ItemDuration = TimeSpan.FromSeconds(configuration.Value.Cache?.ItemDuration ?? 120);
+            DefaultCacheKey = configuration.Value.Cache?.DefaultCacheKey ?? "best_stories_ids";
         }
 
         public async Task<IReadOnlyList<BestStoryItem?>> GetBestStoriesAsync(int number, CancellationToken cancellationToken)
