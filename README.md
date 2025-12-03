@@ -28,23 +28,21 @@ This service retrieves the best **N** Hacker News stories, taking into account t
 - cache durations kept intentionally small to avoid stale data.
 
 This balances data freshness and reduced load on the Hacker News API.
+Total functionallity is covered by **unit-tests**.
 
 ### Input Constraints
 The endpoint:
 GET /api/stories/best?n=... where 200 >= n > 0
 because the official endpoint [beststories.json](https://hacker-news.firebaseio.com/v0/beststories.json) never returns more than ~200 IDs.
 
-### No External NuGet Packages/Unit Tests (By Choice)
+### No External NuGet Packages (except testing) / CI/CD (By Choice)
 
 To keep the solution minimal for the coding test, no external libraries were used.  
 With more time, the following would improve the project:
 
 - **AutoMapper** – mapping models/DTOs  
 - **Polly** – retries, bulkhead, timeouts  
-- **xUnit + NSubstitute** – unit tests and mocks  
-
-Tests are not included due to time constraints, but in production they would be mandatory.
-
+- **CI/CD** – integration, deploy plans + delivery pipelines
 ---
 
 ### Future Improvements
